@@ -20,8 +20,6 @@ npm i
 npm run serve
 ```
 
-You can view the development server at `localhost:8080`.
-
 ### Production build
 
 ```bash
