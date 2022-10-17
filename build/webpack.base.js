@@ -1,6 +1,7 @@
 const path = require('path')
 const { getEntry, getHtmlWebpackPlugin } = require('./util')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 module.exports = {
   resolve: {
@@ -20,7 +21,8 @@ module.exports = {
       // JavaScript: Use Babel to transpile JavaScript files
       { test: /\.js$/, use: ['babel-loader'] },
       // Images: Copy image files to build folder
-      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
+      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource',
+      },
       // Fonts and SVGs: Inline files
       {
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline',
@@ -53,15 +55,16 @@ module.exports = {
   },
   plugins: [
     ...getHtmlWebpackPlugin('./src/pages/**/*.html'),
+    new CleanWebpackPlugin()
     // 进度条
     // new ProgressBarPlugin(),
     // 处理静态文件夹  static之类
     // ~~~
     // eslint
-    new ESLintPlugin({
-      fix: true, /* 自动帮助修复 */
-      extensions: ['js', 'json', 'coffee', 'vue'],
-      exclude: 'node_modules'
-    })
+    // new ESLintPlugin({
+    //   fix: false, /* 自动帮助修复 */
+    //   extensions: ['js', 'json', 'coffee', 'vue'],
+    //   exclude: 'node_modules'
+    // })
   ]
 }

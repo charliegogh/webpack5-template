@@ -12,13 +12,19 @@ const prodConfig = {
     filename: 'js/[name].[contenthash].bundle.js',
     publicPath: './',
     // asset 文件名输出
-    assetModuleFilename: 'images/[name].[hash][ext][query]'
+    assetModuleFilename: 'img/[name].[hash][ext][query]'
   },
   module: {
     rules: [
       {
         test: /\.(less)$/,
-        use: [MiniCssExtractPlugin.loader,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../../' // css 内部文件资源路径问题
+            }
+          },
           {
             loader: 'css-loader',
             options: {

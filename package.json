@@ -44,6 +44,8 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "jquery": "^3.4.1"
+    "charlie-utils": "^2.0.32",
+    "jquery": "^3.4.1",
+    "moment": "^2.29.4"
   }
 }
